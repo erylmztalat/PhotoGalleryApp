@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
-import {FlatList, Image, Text, TouchableOpacity} from 'react-native';
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {Photo} from '../../types';
 import {usePhotos} from '../hooks/usePhotos';
 import PhotoModal from './PhotoModal';
@@ -20,13 +27,15 @@ const PhotoGrid = () => {
     <>
       <FlatList
         data={photos}
+        style={{marginLeft: 20, marginTop: 30}}
         keyExtractor={item => item.id.toString()}
-        numColumns={3}
+        numColumns={2}
+        ItemSeparatorComponent={() => <View style={{height: 10}} />}
         renderItem={({item}) => (
           <TouchableOpacity onPress={() => setSelectedPhoto(item)}>
             <Image
               source={{uri: item.thumbnailUrl}}
-              style={{width: 100, height: 100}}
+              style={[imageStyles.image, imageStyles.shadow]}
             />
           </TouchableOpacity>
         )}
@@ -41,5 +50,22 @@ const PhotoGrid = () => {
     </>
   );
 };
+
+const imageStyles = StyleSheet.create({
+  image: {
+    width: 150,
+    height: 150,
+    margin: 10,
+    borderColor: 'rgba(0, 0, 0, 0.5)',
+    borderWidth: 0.5,
+    borderRadius: 10,
+  },
+  shadow: {
+    shadowColor: '#171717',
+    shadowOffset: {width: -1, height: 1},
+    shadowOpacity: 0.9,
+    shadowRadius: 5,
+  },
+});
 
 export default PhotoGrid;
