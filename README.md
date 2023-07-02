@@ -1,6 +1,6 @@
 # Features
 
-- **Photo Grid:** Presents users with a grid of photo thumbnails. Each thumbnail includes a title.
+- **Photo Grid:** Presents a grid of photo thumbnails.
 
 - **Photo Modal:** Upon selecting a photo from the grid, a modal opens to present a full-size image of the photo along with the title.
 
